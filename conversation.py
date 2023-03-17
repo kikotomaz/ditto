@@ -21,7 +21,9 @@ convo = list()
 running = True
 while(running):
 
-    inp = input("Player: ")
+    inp = ""
+    while(inp == ""):
+        inp = input("Player: ")
 
     if(inp == "/stop"):
         running = False
