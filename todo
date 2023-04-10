@@ -1,17 +1,9 @@
 ✔ properly restrict to knowledge database
 
 add tone interpreter and response
-
 sort and compile common knowledge using word embedding
-@categorize input
-  -question (compile from all knowledge and share)
-  -information (add to knowledge)
-  -statement (compile from personal knowledge and respond)
 add modularity to database (capable of pulling from multiple knowledge bases)
 
 fix voice modifier
 
-
 - release V1
-
-debugging tool at some point
