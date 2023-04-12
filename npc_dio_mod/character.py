@@ -1,5 +1,4 @@
-from npc_dio_mod import wrappers
-#from npc_dio_mod.character import voice
+from npc_dio_mod import ai
 
 class Character:
     name: str = "Unnamed NPC"
@@ -15,7 +14,7 @@ class Character:
     personal: str
 
     thoughts: str
-    mind: wrappers.AIChat
+    mind: ai.AIChat
 
     conversation: list
     debug_log: str
@@ -32,7 +31,7 @@ class Character:
         self.personal_desc = open(f"{character_dir}/personal.txt", "r").read()
         self.dialect_table = open(f"{character_dir}/dialect_table.txt", "r").read()
 
-        self.mind = wrappers.AIChat(model="gpt-3.5-turbo")
+        self.mind = ai.AIChat(model="gpt-3.5-turbo")
         self.thoughts = ""
         self.conversation = list()
 
@@ -53,20 +52,30 @@ class Character:
                     )
         return knowledge
 
-    def format_prompt(self):  
-        system = (  f"{self.format_knowledge()}"
-                    f"* Instructions:\n"
-                    f"The following describes a conversation between {self.name} and Player\n"
-                    f"Based on what {self.name} is currently thinking\n"
-                    # f"Write a verbal response for {self.name} that incorporates the most contextually salient of their thoughts"
-                    f"Write a verbal response for {self.name} that summarizes and communicates the most important thought and keeps the conversation going:\n"
-                    f"'{self.thoughts}'\n"
-                    f"Respond as concisely as possible."
-                    )         
-        messages = [{"role": "system", "content": system}]      
-        messages.extend(self.conversation)
+    def response_prompt(self):  
+
+        prompt = ai.Prompt("npc_dio_mod/provoke_response")
+        prompt.write("ABOVE", self.format_knowledge())
+        prompt.write("NAME", self.name)
+        prompt.write("THOUGHTS", self.thoughts)
+        prompt = prompt.read()
         
-        return messages
+        prompt.extend(self.conversation)
+        
+        return prompt
+
+    def thoughts_prompt(self):
+
+        prompt = ai.Prompt("npc_dio_mod/provoke_thoughts")
+        prompt.write("ABOVE", self.format_knowledge())
+        prompt.write("CHAT", self.flatten_convo())
+        prompt.write("NAME", self.name)
+        prompt.write("PREV", self.thoughts)
+        prompt.write("CONSIDERATIONS", ai.Prompt("npc_dio_mod/considerations").flatten())
+
+        print(prompt.read())
+
+        return prompt.read()
 
     def flatten_convo(self):
         convo = ''
@@ -76,24 +85,18 @@ class Character:
             if(i['role']=="assistant"):
                 role = self.name.upper()
 
-            convo += '%s: %s\n' % (role, i['content'])
+            convo += f"{role}: {i['content']}"
+        
         return convo.strip()
 
     def talk(self, input, debug: bool = False):
 
         self.conversation.append({"role" : "user", "content" : input})
 
-        intention_prompt = f"{self.format_knowledge()}"
-        intention_prompt += open("./npc_dio_mod/prompt_intention.txt").read()
-        intention_prompt = intention_prompt.replace("<<CHAT>>", self.flatten_convo())
-        intention_prompt = intention_prompt.replace("<<NAME>>", self.name)
-        intention_prompt = intention_prompt.replace("<<PREV>>", self.thoughts)
-        
-        intention = list()
-        intention.append({"role" : "system", "content" : intention_prompt})
-        self.thoughts = self.mind.evaluate(intention)
+        prompt = self.thoughts_prompt()
+        self.thoughts = self.mind.evaluate(prompt)
 
-        prompt = self.format_prompt()
+        prompt = self.response_prompt()
         response = self.mind.evaluate(prompt)
 
         self.conversation.append({"role" : "assistant", "content" : response})

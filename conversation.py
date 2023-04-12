@@ -1,6 +1,5 @@
 import os
 import openai
-# import numpy
 import npc_dio_mod
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -13,7 +12,7 @@ character_name: str = "gerg"
 
 #Create character and populate with content
 gerg_char = npc_dio_mod.Character(character_name, enviroment_name, world_directory) 
-#This ^^ is all you'd be using in an application
+#dedrick_char = npc_dio_mod.Character("Dedrick", enviroment_name, world_directory) 
 
 #Run conversation loop
 print("converstation simulator initializing...")

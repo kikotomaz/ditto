@@ -1,6 +1,8 @@
 ✔ properly restrict to knowledge database
+✔ add tone interpreter and response
 
-add tone interpreter and response
+seperate character and conversation so characters can exist without conversation.
+
 sort and compile common knowledge using word embedding
 add modularity to database (capable of pulling from multiple knowledge bases)
 

@@ -1,5 +1,5 @@
 import openai
-from npc_dio_mod.wrappers import ai_wrapper
+from npc_dio_mod.ai.wrappers import ai_wrapper
 
 class AIChat(ai_wrapper.AI):
 

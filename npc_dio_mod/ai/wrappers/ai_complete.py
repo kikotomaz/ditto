@@ -1,5 +1,5 @@
 import openai
-from npc_dio_mod.wrappers.ai_wrapper import AI
+from npc_dio_mod.ai.wrappers import ai_wrapper
 
 class AIComplete(AI):
 
