@@ -1,0 +1,13 @@
+
+
+Given the following chat log, infer the user's intentions. Attempt to anticipate what the is user thinks even if the user may not fully understand it yet themselves, or is asking the wrong questions.
+
+
+
+CHAT LOG:
+<<INPUT>>
+
+
+
+
+ANTICIPATE USER NEEDS:
