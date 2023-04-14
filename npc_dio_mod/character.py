@@ -1,4 +1,5 @@
 from npc_dio_mod import ai
+import os
 
 class Character:
     name: str = "Unnamed NPC"
@@ -12,6 +13,7 @@ class Character:
     world: str
     enviroment: str
     personal: str
+    considerations: str
 
     thoughts: str
     mind: ai.AIChat
@@ -22,14 +24,18 @@ class Character:
     def __init__(self, character_name: str, enviroment_name: str, world_directory: str):
         self.name = character_name.capitalize()
         
-        self.world = open(f"{world_directory}/world.txt", "r").read()
-        self.enviroment = open(f"{world_directory}/enviroments/{enviroment_name}.txt", "r").read()
+        self.world = open(f"{world_directory}/world.prompt", "r").read()
+        self.enviroment = open(f"{world_directory}/enviroments/{enviroment_name}.prompt", "r").read()
 
         character_dir: str = f"{world_directory}/characters/{character_name}"
 
-        self.physical_desc = open(f"{character_dir}/physical.txt", "r").read()
-        self.personal_desc = open(f"{character_dir}/personal.txt", "r").read()
-        self.dialect_table = open(f"{character_dir}/dialect_table.txt", "r").read()
+        self.physical_desc = open(f"{character_dir}/physical.prompt", "r").read()
+        self.personal_desc = open(f"{character_dir}/personal.prompt", "r").read()
+        # self.dialect_table = open(f"{character_dir}/dialect_table.txt", "r").read()
+        if (os.path.isfile(f"{character_dir}/considerations.prompt")):
+            self.considerations = open(f"{character_dir}/considerations.prompt", "r").read()
+        else:
+            self.considerations = open(f"{world_directory}/considerations.prompt", "r").read()
 
         self.mind = ai.AIChat(model="gpt-3.5-turbo")
         self.thoughts = ""
@@ -71,9 +77,7 @@ class Character:
         prompt.write("CHAT", self.flatten_convo())
         prompt.write("NAME", self.name)
         prompt.write("PREV", self.thoughts)
-        prompt.write("CONSIDERATIONS", ai.Prompt("npc_dio_mod/considerations").flatten())
-
-        print(prompt.read())
+        prompt.write("CONSIDERATIONS", self.considerations)
 
         return prompt.read()
 
@@ -113,3 +117,6 @@ class Character:
         if(debug):
             print(self.debug_log)
         return response
+
+    # prompt character to choose (from a list of feelings and emotions) how it feels in the given situation
+    # def query(self, situation):

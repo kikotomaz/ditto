@@ -5,9 +5,9 @@ import npc_dio_mod
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 #===================Params===================
-world_directory: str = "./_solarpunk"
-enviroment_name: str = "herville"
-character_name: str = "gerg"
+world_directory: str = "./_silk_road"
+enviroment_name: str = "Ervok"
+character_name: str = "Satik_the_Cheap"
 #============================================
 
 #Create character and populate with content
@@ -39,4 +39,4 @@ while(running):
                 print(f"command {inp} not found")
                 continue
 
-    print(gerg_char.name + ": " + gerg_char.talk(inp, debug = True))
+    print(gerg_char.name + ": " + gerg_char.talk(inp, debug = False))
