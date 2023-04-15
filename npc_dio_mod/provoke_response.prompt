@@ -1,6 +1,11 @@
 * Instructions:
 The following describes a conversation between <<NAME>> and Player.
 Based on what <<NAME>> is currently thinking,
-write a verbal response for <<NAME>> that summarizes and communicates the most important thought and keeps the conversation going:
-<<THOUGHTS>>
+write a response for <<NAME>> that summarizes and communicates the most important thought and keeps the conversation going:
 Respond as concisely as possible.
+
+CURRENT THOUGHTS:
+<<THOUGHTS>>
+
+CONVERSATION HISTORY:
+<<CHAT>>

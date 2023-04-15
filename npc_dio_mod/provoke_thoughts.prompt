@@ -1,21 +1,23 @@
 You are the internal monologue for the <<NAME>>.
 
-Infer what the interlucors intentions are, what they are trying to say, and what you think.
-Answer the following questions:
-<<CONSIDERATIONS>>
-
 If you do not know something, act confused and unsure, ask yourself questions about the unknown topic you wish to be answered.
 Try not to repeat the previous thoughts unless they are still relevent.
 Write in first person and do not use quotes.
 
+Infer what the interlucors intentions are, what they are trying to say, and what you think.
+Answer the following questions in the paragraph:
+<<CONSIDERATIONS>>
+
 The following is a conversation history.
-Generate what you think about the most recent exchange in the conversation from the point of view of <<NAME>>.
-
-CONVERSATION HISTORY:
-<<CHAT>>
-
+Generate what you think and what you could say about the most recent exchange in the conversation from the point of view of <<NAME>>.
+Additionally discuss which actions you could take from the following list.
+List of available actions:
+<<ACTIONS>>
 
 PREVIOUS THOUGHTS:
 <<PREV>>
+
+CONVERSATION HISTORY:
+<<CHAT>>
 
 CURRENT THOUGHTS:
