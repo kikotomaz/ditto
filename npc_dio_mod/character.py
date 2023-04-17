@@ -1,10 +1,12 @@
 from npc_dio_mod import ai
+from npc_dio_mod.action import Action
 import os
+import re
 
 class Character:
     name: str = "Unnamed NPC"
 
-    dialect_table: str
+    # dialect_table: str
 
     personal_desc: str
     physical_desc: str
@@ -21,7 +23,7 @@ class Character:
     mind: ai.AIChat
 
     conversation: list
-    memory: str
+    # memory: str
     debug_log: str
 
     def __init__(self, character_name: str, enviroment_name: str, world_directory: str, actions = ""):
@@ -68,13 +70,8 @@ class Character:
 
     def format_actions(self):
         action_list = ""
-        
         for a in self.actions:
-            action_list += (
-                f" - {a[0]}\n"
-                f"{a[1]}\n"
-                f"\n"
-            )
+            action_list += a.to_string() + "\n"
 
         return action_list
 
@@ -113,13 +110,15 @@ class Character:
 
     def response_prompt(self):  
 
-        prompt = ai.Prompt("npc_dio_mod/provoke_response")
-        prompt.write("ABOVE", self.format_knowledge())
+        prompt = ai.Prompt("npc_dio_mod/provoke_response_action")
         prompt.write("NAME", self.name)
+        prompt.write("ACTIONS", self.format_actions())
         prompt.write("THOUGHTS", self.thoughts)
+        prompt.write("CHAT", self.flatten_convo())
+
         prompt = prompt.read()
         
-        prompt.extend(self.conversation)
+        # prompt.extend(self.conversation)
         
         return prompt
 
@@ -136,13 +135,13 @@ class Character:
 
         return prompt.read()
 
-    def actions_to_functions(self,response):
+    def actions_to_functions(self, response):
         response = response.split()
 
-        taken_actions = filter(lambda a: (a[0] in response), self.actions)
+        taken_actions = filter(lambda a: (a.name in response), self.actions)
         output = list()
         for a in taken_actions:
-            output.append(a[2])
+            output.append(a.do)
 
         return output
     # prompt character to choose (from a list of feelings and emotions) how it feels in the given situation
@@ -151,26 +150,30 @@ class Character:
 #Actions
     def talk(self, input, debug: bool = False):
 
-        self.conversation.append({"role" : "user", "content" : input})
+        self.conversation.append({"role" : "user", "content" : f"{input} > [NONE, NONE]"})
 
         #Prompt for forethought
         prompt = self.thoughts_prompt()
         self.thoughts = self.mind.evaluate(prompt)
 
-        #Prompt for verbal response
+        #Prompt for reaction
         prompt = self.response_prompt()
-        response = self.mind.evaluate(prompt)
+        reaction = self.mind.evaluate(prompt)
+        print(reaction)
+        self.conversation.append({"role" : "assistant", "content" : reaction})
+        reaction = reaction.split(">")
+        response = reaction[0]
 
-        #Prompt for action
-        prompt = self.action_prompt(response)
-        actions = self.mind.evaluate(prompt)
-        actions_do = self.actions_to_functions(actions)
-        for a in actions_do:
-            a()
+        action = "NONE"
+        if(len(reaction) > 1):
+            action = reaction[1]
+            # actions_do = re.sub("\[.*","", actions)
+            # actions_do = self.actions_to_functions(actions_do)
+            # for a in actions_do:
+                # a("PARAM")
 
-        self.conversation.append({"role" : "assistant", "content" : response})
         # response = voice.Voice.revise_response(response, self.dialect_table)
-
+        # self.conversation.append({"role" : "assistant", "content" : response})
         self.debug_log = (
                 f"\n========================== DEBUG ====================================\n"
                 f"=== STIMULI ===\n"
@@ -180,8 +183,9 @@ class Character:
                 f"=== RESPONSE ===\n"
                 f"{response}\n"
                 f"=== ACTIONS ===\n"
-                f"{self.format_actions()}"
-                f"{actions}\n"
+                f"{self.format_actions()}\n"
+                f"{action}\n"
+                # f"{actions_do}\n"
                 f"========================== END DEBUG =================================\n"
         )
         if(debug):

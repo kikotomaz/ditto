@@ -1,3 +1,5 @@
+import re
+
 
 class Prompt:
 
@@ -31,12 +33,15 @@ class Prompt:
         return prompt
 
     def flatten(self):
-        prompt_str = self.above
-        
-        prompt_str += open(self.location).read()
+        prompt_str = open(self.location).read()
+
+        # remove comments
+        prompt_str = re.sub(";;.*", "", prompt_str)
+
+
         for v in self.variables:
             prompt_str = prompt_str.replace(f"<<{v}>>", f"{self.variables[v]}")
-        prompt_str += self.below
+
+        prompt_str = self.above + prompt_str + self.below
         return prompt_str
 
-       
