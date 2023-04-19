@@ -1,8 +1,15 @@
 ✔ properly restrict to knowledge database
 ✔ add tone interpreter and response
 ✔ actions
+✔ action parameters
 
-action parameters
+memories
+
+-bugs:
+thoughts sometimes TOO brief
+sometimes thinks they are the player talking to themselves
+
+https://arxiv.org/pdf/2304.03442.pdf
 
 sort and compile common knowledge using word embedding
 add modularity to database (capable of pulling from multiple knowledge bases)

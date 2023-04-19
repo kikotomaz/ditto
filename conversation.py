@@ -1,6 +1,6 @@
 import os
 import openai
-import npc_dio_mod as npc
+import ditto as npc
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -22,7 +22,8 @@ running = True
 def leave(a):
     print("conversation ended by " + character_name)
     running = False
-
+def show(a):
+    print(f"showing {a}")
 #Actions
 leave_convo = npc.Action("Leave", "Leave the conversation immediately", leave)
 
@@ -31,7 +32,7 @@ opt.append(["hat", "the hat on Dedricks head"])
 opt.append(["necklace", "the necklace around Dedricks neck, it has a small black cross at the end"])
 opt.append(["bracelet", "small wooden bracelet around dedricks wrist"])
 
-show_item = npc.Action("give_Item", "Give an item to the player. This gives them the item temporarily for them to try.", lambda a : print("[Showing {a[0]}]"), options = opt)
+show_item = npc.Action("give_Item", "Give an item to the player. This gives them the item temporarily for them to try.", show, options = opt)
 
 actions = list()
 actions.append(leave_convo)
