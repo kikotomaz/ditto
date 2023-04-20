@@ -2,7 +2,7 @@
 a personality-based NPC generator powered by language model AI
 
 ## Basic Overview
-{Name} is a library for creating **dynamic**, **realtime**, and **personality-rich** NPC dialogue and behavior.
+ditto is a library for generating realtime dialogue for personality-rich NPC's'.
 
 ## Get Started
 Clone:
@@ -39,7 +39,7 @@ Both styles have their pros and cons and are better suited for different kinds o
 
 Use the list format for personal and physical knowledges; as its much easier to add, remove, or edit a single bullet point if a character is behaving weird.
 
-Use the paragraph format for describing enviromental, and global, and etc knowledges. This allows for more contextual information to be conveyed and is less confusing. The modularity of these knowledges is less important as they dont contribute directly to the behavior of the character so they won't be tinkered with as much.
+Using the paragraph format for describing enviromental, and global, and etc knowledges allows for more contextual information to be conveyed and is less confusing. The modularity of these knowledges is less important as they dont contribute directly to the behavior of the character so they won't be tinkered with as much.
 
 ### Actions
 Actions give characters abilities to execute predefined code in the program. In the example of a video game, the NPC can choose to perform a "give_item" action if the player asks for some item.

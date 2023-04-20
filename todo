@@ -3,7 +3,8 @@
 ✔ actions
 ✔ action parameters
 
-memories
+
+add modularity to database (capable of pulling from multiple knowledge bases)
 
 -bugs:
 thoughts sometimes TOO brief
@@ -12,8 +13,8 @@ sometimes thinks they are the player talking to themselves
 https://arxiv.org/pdf/2304.03442.pdf
 
 sort and compile common knowledge using word embedding
-add modularity to database (capable of pulling from multiple knowledge bases)
-
-fix voice modifier
 
 - release V1
+
+fix voice modifier
+memories

@@ -10,18 +10,11 @@ enviroment_name: str = "herville"
 character_name: str = "dedrick"
 #============================================
 
-#Create character and populate with content
-# gerg_char = npc_dio_mod.Character(character_name, enviroment_name, world_directory) 
-# dedrick_char = npc_dio_mod.Character("Dedrick", enviroment_name, world_directory) 
-
-
-#Run conversation loop
-print("converstation simulator initializing...")
 running = True
 
 def leave(a):
-    print("conversation ended by " + character_name)
     running = False
+    print("conversation ended by " + character_name)
 def show(a):
     print(f"showing {a}")
 #Actions
@@ -38,8 +31,9 @@ actions = list()
 actions.append(leave_convo)
 actions.append(show_item)
 
-gerg_char = npc.Character(character_name, enviroment_name, world_directory, actions = actions) 
+gerg_char = npc.Character.create(character_name, enviroment_name, world_directory, actions = actions) 
 
+print("converstation simulator initializing...")
 while(running):
 
     inp = ""
@@ -61,4 +55,4 @@ while(running):
                 print(f"command {inp} not found")
                 continue
 
-    print(gerg_char.name + ": " + gerg_char.talk(inp, debug = False))
+    print(gerg_char.name + ": " + gerg_char.talk(inp))
