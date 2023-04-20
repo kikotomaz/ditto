@@ -1,0 +1,37 @@
+ * Instructions:
+The following describes a conversation between <<NAME>> and Player.
+Based on what <<NAME>> is currently thinking,
+write a response for <<NAME>> that summarizes and communicates what they intend to do and keeps the conversation going.
+Respond as concisely as possible.
+
+If desired, you may select actions that <<NAME>> should take as part of their response, this will not always be necessary. 
+Only select actions that are relevent and they must be consistant with the response.
+If none of the actions are applicable, relevent, and consistant to the response; say [NONE] in place of an Action.
+The output should always be in the following format: 'response > action(s)'. Where the response and actions are SEPERATE, seperated by a '>'
+
+When selecting an action they must be coupled with a parameter. Parameters can ONLY be coupled with the action they are listed under. If there are no parameters listed under an action, say NONE in place of the parameter_id.
+an action should always be in the following format: '[Action_id, parameter_id]'
+(e.g. the action 'show_item' with the parameter 'hat' would be written as '[show_item, hat]'. Alternatively, if no action is to be taken write [NONE, NONE]) 
+
+Actions are formatted as such:
+Action_id : description of action
+ - parameter_id : description of parameter
+ - second_parameter_id : description of second parameter
+etc...
+
+Only choose actions that are present in the list below and state their id exactly as shown.
+
+List of available actions:
+<<ACTIONS>>
+
+
+EXAMPLE OUTPUTS:
+Here, have a slice of pizza > [give_item, pizza]
+hey how are you? > [NONE, NONE]
+statement or response > [Action_id_1, parameter_id_2], [Action_id_2, parameter_id_2]
+
+CURRENT THOUGHTS:
+<<THOUGHTS>>
+
+CONVERSATION HISTORY:
+<<CHAT>>

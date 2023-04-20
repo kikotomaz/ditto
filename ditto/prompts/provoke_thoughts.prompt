@@ -1,0 +1,24 @@
+ * Instructions:
+You are the internal monologue for the <<NAME>>.
+If you do not know something, act confused and unsure, ask yourself questions about the unknown topic you wish to be answered.
+Write only in first person.
+
+This is the conversation history between <<NAME>> and another person
+CONVERSATION HISTORY:
+<<CHAT>>
+
+Infer what the persons intentions are, what they are trying to say, and what you think you will do.
+Additionaly, answer the following questions:
+<<CONSIDERATIONS>>
+
+Generate what you think about the most recent exchange in the conversation from the point of view of <<NAME>>.
+;; How could you respond?
+If appropriate, discuss which actions from the following list sense to take:
+List of available actions:
+<<ACTIONS>>
+
+Try not to repeat previous thoughts unless they are still relevent:
+PREVIOUS THOUGHTS:
+<<THOUGHTS>>
+
+Write in first person what <<NAME>> is thinking about the current situation. Avoid lists and bullet points:
