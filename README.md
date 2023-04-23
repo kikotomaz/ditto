@@ -1,8 +1,8 @@
-# ditto | mimicy
-a personality-based NPC generator powered by language model AI
+# ditto
+a personality-based, dynamic NPC dialogue generator.
 
 ## Basic Overview
-ditto is a library for generating realtime dialogue for personality-rich NPC's'.
+ditto generates realtime dialogue for personality-rich NPC's.
 
 ## Get Started
 Clone:
@@ -16,6 +16,20 @@ Import as python module:
 ## Usage
 
 each character is comprised of different "knowledges".
+
+ditto_world_filetree
+
+├── characters
+│   └── default_character
+│       ├── personal.know
+│       └── physical.know
+├── enviroments
+│   └── enviroment_name
+├── etc
+│   └── misc_info_0
+├── condsiderations
+└── world
+
  - personal
 	 - information on how the character ACTS. This is where the model is informed on the personality of the character
  - physical
@@ -25,7 +39,7 @@ each character is comprised of different "knowledges".
  - global
 	 - general information on the world or region they inhabit. This can include global knowledges such as political or philisofical views 
  - etc
-	 - any other specific knowledges the character should be able to reference, such as the appearances and behaviors of fantasy animals and plants, or simply facts they have gathered over time.
+	 - any other specific knowledges the character should be able to reference, such as the appearances and behaviors of relevent animals or plants, or any ofther facts they should know.
 
 ### Formatting
 Each knowledge can be written in one of two ways:
