@@ -31,7 +31,7 @@ actions = list()
 actions.append(leave_convo)
 actions.append(show_item)
 
-gerg_char = npc.Character.create(character_name, enviroment_name, world_directory, actions = actions, etc={"snail_faq"}) 
+gerg_char = npc.Character.create(character_name, enviroment_name, world_directory, actions = actions, etc={"snail_faq"}, debug=True) 
 
 print("converstation simulator initializing...")
 while(running):

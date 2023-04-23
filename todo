@@ -4,9 +4,9 @@
 ✔ action parameters
 ✔ add modularity to database (capable of pulling from etc)
 
-better format etc
-fix voice modifier?
+add imports to .know ;; better format etc
 shorten knowledge heading (word embeddings?)
+fix voice modifier?
 
 https://arxiv.org/pdf/2304.03442.pdf
 

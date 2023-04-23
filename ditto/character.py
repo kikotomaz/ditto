@@ -134,12 +134,14 @@ class Character:
     # summarize memory into a knowledge
     # def sleep(self):
 
-    def talk(self, input):
+    def talk(self, input, debug=False):
 
         self.conversation.append({"role" : "user", "content" : f"{input} > [NONE, NONE]"})
 
         #Prompt for forethought
         prompt = self.thoughts_prompt()
+        if(debug == True)
+            f = open(f"{debug}/thoughts.log")
         self.thoughts = self.mind.evaluate(prompt)
 
         #Prompt for reaction
