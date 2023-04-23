@@ -2,7 +2,6 @@
 The following describes a conversation between <<NAME>> and Player.
 Based on what <<NAME>> is currently thinking,
 write a response for <<NAME>> that summarizes and communicates what they intend to do and keeps the conversation going.
-Respond as concisely as possible.
 
 If desired, you may select actions that <<NAME>> should take as part of their response, this will not always be necessary. 
 Only select actions that are relevent and they must be consistant with the response.
@@ -29,6 +28,9 @@ EXAMPLE OUTPUTS:
 Here, have a slice of pizza > [give_item, pizza]
 hey how are you? > [NONE, NONE]
 statement or response > [Action_id_1, parameter_id_2], [Action_id_2, parameter_id_2]
+
+Your response (the text before the ">" ) should be relevent your "CURRENT THOUGHTS". The last part of the thoughts should give a hint on how they want to response.
+Respond as concisely as possible, using verbal social cues and insinuations to optimize your response.
 
 CURRENT THOUGHTS:
 <<THOUGHTS>>

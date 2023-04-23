@@ -1,3 +1,4 @@
+from ditto import ai
 
 class Memory:
 
@@ -6,34 +7,48 @@ class Memory:
     physical: str
     enviromental: str
     world: str
-    etc: list()
+    etc: str
     
-    def __init__(self, name, personal, physical, enviromental, world, etc = ""):
+    def __init__(self, name, personal, physical, enviromental, world, etc = list()):
         self.name = name
         self.personal = personal
         self.physical = physical
         self.enviromental = enviromental
         self.world = world
-        self.etc = etc
+        etc_knowledge = ""
+        for e in etc:
+            etc_knowledge += f"{e}\n\n"
+        self.etc = etc_knowledge
 
-    def self_knowledge(self):
-        return f"{self.physical}\n\n{self.personal}"
-
-    def world_knowledge(self):
-        return f"{self.world}\n\n{self.enviromental}"
-
-    def format_knowledge(self):
-        knowledge = (f" * Knowledge:\n"
-                    f"{self.world_knowledge()}\n"
-                    f"You are {self.name}.\n"
-                    f"{self.self_knowledge()}\n"
-                    )
+    def general_knowledge(self):
+        knowledge = (
+            f"-- General Knowledge\n"
+            f"- Global Knowledge:"
+            f"{self.world}\n"
+            f"- Current Enviroment: "
+            f"{self.enviromental}\n"
+            f"- Miscellaneous\n"
+            f"{self.etc}\n"
+        )
         return knowledge
 
-    def format_actions(self):
-        action_list = ""
-        for a in self.actions:
-            action_list += a.to_string() + "\n"
 
-        return action_list
+    def self_knowledge(self):
+        knowledge = (
+            f"-- Knowledge about SELF:"
+            f"You are {self.name}\n"
+            f"{self.personal}\n"
+            f"{self.physical}\n"
+ 
+        )
+        return knowledge
 
+    def format_knowledge(self):
+        knowledge = (
+            f" * Knowledge\n"
+            f"{self.general_knowledge()}"
+            f"\n"
+            f"{self.self_knowledge()}"
+       )
+
+        return knowledge

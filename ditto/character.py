@@ -17,7 +17,7 @@ class Character:
     # short_memory: str
     debug_log: str
 
-    def __init__(self, name, memory: Memory, actions: list, etc: list, considerations):
+    def __init__(self, name, memory: Memory, actions: list, considerations):
         self.name = name
         self.memory = memory
         self.considerations = considerations
@@ -29,24 +29,28 @@ class Character:
         self.debug_log = ""
 
     @staticmethod
-    def create(character_name, enviroment_name, world_directory, actions = list(), etc = ""):
+    def create(character_name, enviroment_name, world_directory, actions = list(), etc = list()):
 
         character_dir: str = f"{world_directory}/characters/{character_name}"
 
-        physical = open(f"{character_dir}/physical.prompt", "r").read()
-        personal = open(f"{character_dir}/personal.prompt", "r").read()
+        physical = open(f"{character_dir}/physical", "r").read()
+        personal = open(f"{character_dir}/personal", "r").read()
  
-        enviromental = open(f"{world_directory}/enviroments/{enviroment_name}.prompt", "r").read()
-        world = open(f"{world_directory}/world.prompt", "r").read()
+        enviromental = open(f"{world_directory}/enviroments/{enviroment_name}", "r").read()
+        world = open(f"{world_directory}/world", "r").read()
 
-        if (os.path.isfile(f"{character_dir}/considerations.prompt")):
-            considerations = open(f"{character_dir}/considerations.prompt", "r").read()
+        if (os.path.isfile(f"{character_dir}/considerations")):
+            considerations = open(f"{character_dir}/considerations", "r").read()
         else:
-            considerations = open(f"{world_directory}/considerations.prompt", "r").read()
+            considerations = open(f"{world_directory}/considerations", "r").read()
 
-        memory = Memory(character_name, personal, physical, enviromental, world, etc)
+        etc_knowledge = list()
+        for e in etc:
+            etc_knowledge.append(open(f"{world_directory}/etc/{e}", "r").read())
 
-        return Character(character_name.capitalize(), memory, actions, etc, considerations)
+        memory = Memory(character_name, personal, physical, enviromental, world, etc_knowledge)
+
+        return Character(character_name.capitalize(), memory, actions, considerations)
         
 
     def format_actions(self):
@@ -70,6 +74,7 @@ class Character:
 
     def thoughts_prompt(self):
         prompt = ai.Prompt("ditto/prompts/provoke_thoughts")
+        prompt.write("ABOVE", self.memory.format_knowledge())
         prompt.write("NAME", self.name)
         prompt.write("CHAT", self.flatten_convo())
         t = self.thoughts    
@@ -78,18 +83,17 @@ class Character:
         prompt.write("THOUGHTS", t)
         prompt.write("ACTIONS", self.format_actions())
         prompt.write("CONSIDERATIONS", self.considerations)
-        prompt.write("ABOVE", self.memory.format_knowledge())
+        print(self.memory.format_knowledge())
         return prompt.read()
 
-    def response_prompt(self):  
+    def response_prompt(self): 
 
         prompt = ai.Prompt("ditto/prompts/provoke_response")
+        prompt.write("ABOVE", self.memory.format_knowledge())
         prompt.write("NAME", self.name)
         prompt.write("CHAT", self.flatten_convo())
         prompt.write("THOUGHTS", self.thoughts)
         prompt.write("ACTIONS", self.format_actions())
-
-        prompt.write("ABOVE", self.memory.self_knowledge())
         prompt = prompt.read()
         prompt.extend(self.conversation)
         

@@ -1,4 +1,4 @@
-# ditto | mimicy
+# ditto
 a personality-based NPC generator powered by language model AI
 
 ## Basic Overview
@@ -17,13 +17,13 @@ Import as python module:
 
 each character is comprised of different "knowledges".
  - personal
-	 - information on how the character ACTS. This is where the model is informed on the personality of the character
+	 - information on how the character ACTS. This is where the model is informed on the personality of the character and their backstory
  - physical
 	 - information on what the character LOOKS LIKE. This is not neccesary but enables the character to understand and make references made to its apperance. 
  - enviromental
 	 - information on the general enviroment surrounding the character. This enables them to understand and make references to their immediate enviroment
- - global
-	 - general information on the world or region they inhabit. This can include global knowledges such as political or philisofical views 
+ - world
+	 - general information on the world or region they inhabit. This can include global knowledges such as political or philisophical views 
  - etc
 	 - any other specific knowledges the character should be able to reference, such as the appearances and behaviors of fantasy animals and plants, or simply facts they have gathered over time.
 

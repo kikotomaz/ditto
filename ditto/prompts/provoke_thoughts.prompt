@@ -12,13 +12,13 @@ Additionaly, answer the following questions:
 <<CONSIDERATIONS>>
 
 Generate what you think about the most recent exchange in the conversation from the point of view of <<NAME>>.
-;; How could you respond?
+How could you respond?
 If appropriate, discuss which actions from the following list sense to take:
 List of available actions:
 <<ACTIONS>>
 
-Try not to repeat previous thoughts unless they are still relevent:
+Try not to repeat previous thoughts unless they are still relevent to the most recent exchange:
 PREVIOUS THOUGHTS:
 <<THOUGHTS>>
 
-Write in first person what <<NAME>> is thinking about the current situation. Avoid lists and bullet points:
+Write in first person what <<NAME>> is thinking about the current situation, and conclude with what they think they might do. Avoid lists and bullet points:

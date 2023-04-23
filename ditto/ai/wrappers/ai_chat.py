@@ -8,6 +8,6 @@ class AIChat(ai_wrapper.AI):
 
     def evaluate(self, msgs):
 
-        response = openai.ChatCompletion.create(model=self.model, messages=msgs, max_tokens=512, temperature=.7)
+        response = openai.ChatCompletion.create(model=self.model, messages=msgs, max_tokens=512, temperature=.5)
 
         return response.choices[0].message.content
