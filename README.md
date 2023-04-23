@@ -14,39 +14,38 @@ Import as python module:
     import ditto
 
 ## Usage
+### Knowledges
+each character is comprised of different "knowledges" (.know files)
 
-each character is comprised of different "knowledges".
-
-ditto_world_filetree
-
-├── characters
-│   └── default_character
-│       ├── personal.know
-│       └── physical.know
-├── enviroments
-│   └── enviroment_name
-├── etc
-│   └── misc_info_0
-├── condsiderations
-└── world
-
+	ditto_world_filetree
+	├── characters
+	│   └── default_character
+	│       ├── personal.know
+	│       └── physical.know
+	├── enviroments
+	│   └── enviroment_name.know
+	├── etc
+	│   └── misc_info_0.know
+	├── condsiderations
+	└── world.know
+	
  - personal
 	 - information on how the character ACTS. This is where the model is informed on the personality of the character
  - physical
 	 - information on what the character LOOKS LIKE. This is not neccesary but enables the character to understand and make references made to its apperance. 
  - enviromental
-	 - information on the general enviroment surrounding the character. This enables them to understand and make references to their immediate enviroment
+	 - information on the general enviroment surrounding a given character. This enables them to understand and make references to their immediate enviroment
  - global
 	 - general information on the world or region they inhabit. This can include global knowledges such as political or philisofical views 
  - etc
-	 - any other specific knowledges the character should be able to reference, such as the appearances and behaviors of relevent animals or plants, or any ofther facts they should know.
+	 - any other available knowledges characters should be able to reference, such as the appearances and behaviors of misc. plants and animals, or any other facts.
 
-### Formatting
+#### Formatting
 Each knowledge can be written in one of two ways:
 
-#### Paragraph style
+##### Paragraph style
 [a paragraph description of a character]
-#### List style
+##### List style
 [list style description of the same character]
 
 Both styles have their pros and cons and are better suited for different kinds of knowledges.
