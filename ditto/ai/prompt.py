@@ -35,7 +35,6 @@ class Prompt:
     def flatten(self):
         prompt_str = open(self.location).read()
 
-
         for v in self.variables:
             prompt_str = prompt_str.replace(f"<<{v}>>", f"{self.variables[v]}")
 

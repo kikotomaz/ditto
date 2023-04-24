@@ -1,10 +1,10 @@
 from ditto import ai
 from ditto.character_assets.memory import Memory
-# from ditto.character_assets.voice import Voice
 import os
 import re
 
 class Character:
+
     name: str = "Unnamed NPC"
 
     actions: list
@@ -28,30 +28,6 @@ class Character:
 
         self.debug_log = ""
 
-    @staticmethod
-    def create(character_name, enviroment_name, world_directory, actions = list(), etc = list()):
-
-        character_dir: str = f"{world_directory}/characters/{character_name}"
-
-        physical = open(f"{character_dir}/physical", "r").read()
-        personal = open(f"{character_dir}/personal", "r").read()
- 
-        enviromental = open(f"{world_directory}/enviroments/{enviroment_name}", "r").read()
-        world = open(f"{world_directory}/world", "r").read()
-
-        if (os.path.isfile(f"{character_dir}/considerations")):
-            considerations = open(f"{character_dir}/considerations", "r").read()
-        else:
-            considerations = open(f"{world_directory}/considerations", "r").read()
-
-        etc_knowledge = list()
-        for e in etc:
-            etc_knowledge.append(open(f"{world_directory}/etc/{e}", "r").read())
-
-        memory = Memory(character_name, personal, physical, enviromental, world, etc_knowledge)
-
-        return Character(character_name.capitalize(), memory, actions, considerations)
-        
 
     def format_actions(self):
         action_list = ""
@@ -68,11 +44,12 @@ class Character:
             if(i['role']=="assistant"):
                 role = self.name.upper()
 
-            convo += f"{role}: {i['content']}"
+            convo += f"{role}: {i['content']}\n"
         
         return convo.strip()
 
     def thoughts_prompt(self):
+
         prompt = ai.Prompt("ditto/prompts/provoke_thoughts")
         prompt.write("ABOVE", self.memory.format_knowledge())
         prompt.write("NAME", self.name)
@@ -83,8 +60,8 @@ class Character:
         prompt.write("THOUGHTS", t)
         prompt.write("ACTIONS", self.format_actions())
         prompt.write("CONSIDERATIONS", self.considerations)
-        print(self.memory.format_knowledge())
-        return prompt.read()
+
+        return prompt
 
     def response_prompt(self): 
 
@@ -94,8 +71,6 @@ class Character:
         prompt.write("CHAT", self.flatten_convo())
         prompt.write("THOUGHTS", self.thoughts)
         prompt.write("ACTIONS", self.format_actions())
-        prompt = prompt.read()
-        prompt.extend(self.conversation)
         
         return prompt
 
@@ -127,27 +102,24 @@ class Character:
             output.extend(self.get_actions(r))
 
         return output
-        
+
     # prompt character to choose (from a list of feelings and emotions) how it feels in the given situation
     # def query(self, situation):
     
-    # summarize memory into a knowledge
+    # summarize conversation into a knowledge
     # def sleep(self):
 
-    def talk(self, input, debug=False):
+    def talk(self, input):
 
         self.conversation.append({"role" : "user", "content" : f"{input} > [NONE, NONE]"})
 
         #Prompt for forethought
         prompt = self.thoughts_prompt()
-        if(debug == True)
-            f = open(f"{debug}/thoughts.log")
         self.thoughts = self.mind.evaluate(prompt)
-
         #Prompt for reaction
         prompt = self.response_prompt()
         reaction = self.mind.evaluate(prompt)
-        print(reaction)
+
         reaction = reaction.split(">")
         response = reaction[0]
         action = "NONE"
@@ -173,8 +145,83 @@ class Character:
                 # f"{actions_do}\n"
                 f"========================== END DEBUG =================================\n"
         )
-    
-        print(self.debug_log)
+
         self.conversation.append({"role" : "assistant", "content" : f"{response} > {action}"})
 
         return response
+
+    def debug_knowledge(self):
+        summary = (
+            f"{self.memory.format_knowledge()}\n"
+        )
+        return summary
+
+def create(character_name, enviroment_name, world_directory, actions = list(), etc = list()):
+
+    world_file = f"{world_directory}/world"
+    enviroment_file = f"{world_directory}/enviroments/{enviroment_name}"
+    
+    character_dir: str = f"{world_directory}/characters/{character_name}"
+
+    physical_file = f"{character_dir}/physical"
+    personal_file = f"{character_dir}/personal"
+
+    dirs = list()
+    k = list()
+
+    dirs.append(world_file)
+    k.append(open(world_file, "r").read())
+
+    dirs.append(enviroment_file)
+    k.append(open(enviroment_file, "r").read())
+
+    dirs.append(physical_file)
+    k.append(open(physical_file, "r").read())
+
+    dirs.append(personal_file)
+    k.append(open(personal_file, "r").read())
+
+    for e in etc:
+        dirs.append(f"{world_directory}/etc/{e}")
+        k.append(open(f"{world_directory}/etc/{e}", "r").read())
+
+    #better parser
+    for i in range(0, len(k)):
+
+        lines = k[i].split("\n")
+        knowledge_i = ""
+        for l in lines:
+            line = l.strip()
+            line = re.sub(";;.*", "", line)
+
+            if(line.startswith("%")):
+                import_dir = line.split(" ")[1]
+                # this conditional makes no sense to me but it works
+                if (import_dir in dirs):
+                    k.append(open(f"{world_directory}/{import_dir}", "r").read())
+                    dirs.append(f"{world_directory}/{import_dir}")
+                continue
+
+            if(line.isspace()):
+                continue
+            
+            knowledge_i += f"{line}\n"
+            
+                
+        k[i] = knowledge_i
+
+    world = k.pop(0)
+    enviromental = k.pop(0)
+    physical = k.pop(0)
+    personal = k.pop(0)
+    etc_knowledge = k
+
+    memory = Memory(character_name, personal, physical, enviromental, world, etc_knowledge)
+
+    if (os.path.isfile(f"{character_dir}/considerations")):
+        considerations = open(f"{character_dir}/considerations", "r").read()
+    else:
+        considerations = open(f"{world_directory}/considerations", "r").read()
+
+    return Character(character_name.capitalize(), memory, actions, considerations)
+ 

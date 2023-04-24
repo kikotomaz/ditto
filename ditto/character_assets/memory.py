@@ -1,4 +1,4 @@
-from ditto import ai
+import re
 
 class Memory:
 
@@ -8,7 +8,7 @@ class Memory:
     enviromental: str
     world: str
     etc: str
-    
+
     def __init__(self, name, personal, physical, enviromental, world, etc = list()):
         self.name = name
         self.personal = personal
@@ -23,7 +23,7 @@ class Memory:
     def general_knowledge(self):
         knowledge = (
             f"-- General Knowledge\n"
-            f"- Global Knowledge:"
+            f"- Global Knowledge:\n"
             f"{self.world}\n"
             f"- Current Enviroment: "
             f"{self.enviromental}\n"
@@ -35,9 +35,11 @@ class Memory:
 
     def self_knowledge(self):
         knowledge = (
-            f"-- Knowledge about SELF:"
+            f"-- Knowledge about SELF: "
             f"You are {self.name}\n"
+            f"- Internal\n"
             f"{self.personal}\n"
+            f"- External\n"
             f"{self.physical}\n"
  
         )

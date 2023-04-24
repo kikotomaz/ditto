@@ -31,7 +31,7 @@ actions = list()
 actions.append(leave_convo)
 actions.append(show_item)
 
-gerg_char = npc.Character.create(character_name, enviroment_name, world_directory, actions = actions, etc={"snail_faq"}, debug=True) 
+gerg_char = npc.create(character_name, enviroment_name, world_directory, actions = actions, etc={"snail_faq"}) 
 
 print("converstation simulator initializing...")
 while(running):
@@ -47,7 +47,9 @@ while(running):
             case "/stop":
                 running = False
                 continue
-    
+            case "/spit":
+                print(gerg_char.debug_knowledge())
+                continue
             case "/log":
                 print(gerg_char.debug_log)
                 continue
