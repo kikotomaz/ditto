@@ -15,7 +15,7 @@ Finally just import the module into your python project
 	
 	import ditto
 
-Alternatively, you can check out the `examples/` directory that contains some small programs that showcase Ditto's abilities
+Alternatively, you can check out the `examples/` directory that contains some small cli programs that showcase Ditto's abilities
 
 # Usage
 Each Ditto project consists of a directory that defines the world, its enviroments, and the characters:
