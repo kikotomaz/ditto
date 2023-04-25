@@ -1,4 +1,4 @@
-# Ditto 
+# Ditto
 
 Ditto is a realtime NPC dialogue generator that creates personality-rich characters for virtual worlds.
 
