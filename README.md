@@ -1,6 +1,6 @@
 # Ditto 
 
-Ditto is a realtime NPC dialogue generator that creates personality-rich characters, breathing a new life into virtual worlds.
+Ditto is a realtime NPC dialogue generator that creates personality-rich characters for virtual worlds.
 
 ## Get Started
 Clone:
