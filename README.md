@@ -3,16 +3,22 @@
 Ditto is a realtime NPC dialogue generator that creates personality-rich characters for virtual worlds.
 
 ## Get Started
-Clone:
+Clone repo:
 
-    git clone https://github.com/kikotomaz/npc-dio my_dir
+	git clone https://github.com/kikotomaz/ditto my_dir
 
-Import as python module:
+This repository uses the OpenAI API as for it's LLM backend so you'll need to install that aswell:
 
-    import ditto
+	pip install openai
+
+Finally just import the module into your python project
+	
+	import ditto
+
+Alternatively, you can check out the `examples/` directory that contains some small programs that showcase Ditto's abilities
 
 # Usage
-Each ditto project consists of a directory that defines the world, its enviroments, and the characters:
+Each Ditto project consists of a directory that defines the world, its enviroments, and the characters:
 
 	ditto_world_filetree
 	├── characters
@@ -28,13 +34,13 @@ Each ditto project consists of a directory that defines the world, its enviromen
 	├── condsiderations
 	└── world.know *
 
-`*` indicates a file requried for ditto to run
+`*` indicates a file requried for Ditto to run
 
 ## Knowledges
 each project is configured with different "knowledges" (`.know` files)
 
 * `characters/`: this directory is where you will store all the information relating to the behavior of your characters.
-Each character can contain one of these files, but only `personal.know` is mandatory for ditto to generate dialogue.
+Each character can contain one of these files, but only `personal.know` is mandatory for Ditto to generate dialogue.
 	* `personal.know`: information on how the character ACTS. This is where the character is informed on their personality and backstory
 	* `physical.know`: information on what the character LOOKS LIKE. This is not neccesary but enables the character to understand and make references made to its
 	* `etc.know`: any other information this character should know, such as common knowledge or the physical appearances of friends.
@@ -86,7 +92,7 @@ Use the list format for personal knowledges; as it is much easier to add, remove
 Using the paragraph format for describing enviromental, and global, and etc knowledges allows for more contextual information to be conveyed and is less confusing for the writers writing these knowledges. The modularity of these knowledges is less important as they dont contribute directly to the behavior of each character, and won't be tinkered with as often.
 
 # Actions
-Actions are what give characters the ability to execute code outside of ditto. In the example of a video game, the NPC can choose to perform a "give_item" action if the player asks for some item.
+Actions are what give characters the ability to execute code outside of Ditto. In the example of a video game, the NPC can choose to perform a "give_item" action if the player asks for some item.
 
 Actions are defined with an identifier, description, optional parameters, and a function to execute when the character decides to use it.
 
