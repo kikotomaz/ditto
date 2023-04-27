@@ -165,6 +165,7 @@ def create(character_name, enviroment_name, world_directory, actions = list(), e
 
     physical_file = f"{character_dir}/physical"
     personal_file = f"{character_dir}/personal"
+    etc_file = f"{character_dir}/etc"
 
     dirs = list()
     k = list()
@@ -180,6 +181,10 @@ def create(character_name, enviroment_name, world_directory, actions = list(), e
 
     dirs.append(personal_file)
     k.append(get_knowledge(personal_file))
+
+    if(os.path.isfile(etc_file)):
+        dirs.append(etc_file)
+        k.append(get_knowledge(etc_file))
 
     for e in etc:
         dirs.append(f"{world_directory}/etc/{e}")
@@ -206,8 +211,7 @@ def create(character_name, enviroment_name, world_directory, actions = list(), e
                 continue
             
             knowledge_i += f"{line}\n"
-            
-                
+
         k[i] = knowledge_i
 
     world = k.pop(0)
@@ -217,6 +221,7 @@ def create(character_name, enviroment_name, world_directory, actions = list(), e
     etc_knowledge = k
 
     memory = Memory(character_name, personal, physical, enviromental, world, etc_knowledge)
+
 
     if (os.path.isfile(f"{character_dir}/considerations")):
         considerations = open(f"{character_dir}/considerations", "r").read()
