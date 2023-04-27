@@ -7,15 +7,11 @@ Clone repo:
 
 	git clone https://github.com/kikotomaz/ditto my_dir
 
-This repository uses the OpenAI API as for it's LLM backend so you'll need to install that aswell:
+This repo uses the OpenAI's GPT-3.5 API as for it's language model backend so you'll need to install that aswell:
 
 	pip install openai
 
-Finally just import the module into your python project
-	
-	import ditto
-
-Alternatively, you can check out the `examples/` directory that contains some small cli programs that showcase Ditto's abilities
+Then, you can check out the `examples/` directory that contains some small cli programs that showcase Ditto's abilities
 
 # Usage
 Each Ditto project consists of a directory that defines the world, its enviroments, and the characters:
