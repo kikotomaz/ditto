@@ -6,7 +6,9 @@
 ✔ add imports to .know + better format etc
 ✔ fix cyclical imports + make sure files arent imported twice
 
-.know file convention
+make some knowledges optional
+- only need personal, enviroment, world (physical?)
+
 error handling
 - file missing
 
