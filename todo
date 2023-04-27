@@ -7,8 +7,8 @@
 ✔ fix cyclical imports + make sure files arent imported twice
 
 .know file convention
-character specific
-- etc
+error handling
+- file missing
 
 shorten knowledge heading (word embeddings?)
 dedrick always show me his hat fix actions always triggering

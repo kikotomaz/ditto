@@ -170,20 +170,20 @@ def create(character_name, enviroment_name, world_directory, actions = list(), e
     k = list()
 
     dirs.append(world_file)
-    k.append(open(world_file, "r").read())
+    k.append(get_knowledge(world_file))
 
     dirs.append(enviroment_file)
-    k.append(open(enviroment_file, "r").read())
+    k.append(get_knowledge(enviroment_file))
 
     dirs.append(physical_file)
-    k.append(open(physical_file, "r").read())
+    k.append(get_knowledge(physical_file))
 
     dirs.append(personal_file)
-    k.append(open(personal_file, "r").read())
+    k.append(get_knowledge(personal_file))
 
     for e in etc:
         dirs.append(f"{world_directory}/etc/{e}")
-        k.append(open(f"{world_directory}/etc/{e}", "r").read())
+        k.append(get_knowledge(f"{world_directory}/etc/{e}"))
 
     #better parser
     for i in range(0, len(k)):
@@ -224,4 +224,15 @@ def create(character_name, enviroment_name, world_directory, actions = list(), e
         considerations = open(f"{world_directory}/considerations", "r").read()
 
     return Character(character_name.capitalize(), memory, actions, considerations)
- 
+
+def get_knowledge(file):
+
+    if(os.path.isfile(file)):
+        return open(file, "r").read()
+
+    if(os.path.isfile(f"{file}.know")):
+        return open(f"{file}.know", "r").read()
+
+    # for windows
+    if(os.path.isfile(f"{file}.txt")):
+        return open(f"{file}.txt", "r").read()
