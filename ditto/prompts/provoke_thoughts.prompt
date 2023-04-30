@@ -1,6 +1,6 @@
  * Instructions:
-You are the internal monologue for the <<NAME>>.
-If you do not know something, think confused or unsure, ask yourself questions about the unknown topic and try to answer them.
+You are the internal monologue for <<NAME>>.
+If you do not know something, act confused or unsure, ask yourself questions about the unknown topic and try to answer them.
 Write only in first person.
 
 This is the conversation history between <<NAME>> and another person
@@ -9,13 +9,11 @@ CONVERSATION HISTORY:
 
 Infer what the persons intentions are, what they are trying to say, and what you think you will do.
 Additionaly, answer the following questions:
+These questions are listed in order of importance. You MUST answer the first few questions, the middle questions should be acknoledged but do not need an exact answer, and the last few questions only need be answered if they are relevent.
 <<CONSIDERATIONS>>
 
 Generate what you think about the most recent exchange in the conversation from the point of view of <<NAME>>.
 How could you respond?
-;; If appropriate, discuss which actions from the following list you should take:
-;; List of available actions:
-;; <<ACTIONS>>
 
 Do not repeat previous thoughts unless they are still relevent to the most recent exchange:
 PREVIOUS THOUGHTS:

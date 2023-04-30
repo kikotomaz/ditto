@@ -1,7 +1,7 @@
  * Instructions:
 The following describes a conversation between <<NAME>> and Player.
 Based on what <<NAME>> is currently thinking,
-write a response for <<NAME>> that summarizes and communicates what they intend to do based on their current thoughts and keeps the conversation going.
+write a response for <<NAME>> that communicates what they intend to do/say based on their current thoughts.
 
 CURRENT THOUGHTS:
 <<THOUGHTS>>
@@ -20,7 +20,7 @@ The output should always be in the following format: 'response > action(s)'. Whe
 
 When selecting an action, they must be coupled with a parameter. Parameters can ONLY be coupled with the action they are listed under. If there are no parameters listed under an action, say NONE in place of the parameter_id.
 an action should always be in the following format: '[Action_id, parameter_id]'
-(e.g. the action 'show_item' with the parameter 'hat' would be written as '[show_item, hat]'. Alternatively, if no action is to be taken write [NONE, NONE]) 
+(e.g. the action 'show_item' with the parameter 'sword' would be written as '[show_item, sword]'. Alternatively, if no action is to be taken write [NONE, NONE]) 
 
 Actions are formatted as such:
 Action_id : description of action
