@@ -1,3 +1,4 @@
+# DONE 
 ✔ properly restrict to knowledge database
 ✔ add tone interpreter and response
 ✔ actions
@@ -5,16 +6,23 @@
 ✔ add modularity to database (capable of pulling from etc)
 ✔ add imports to .know + better format etc
 ✔ fix cyclical imports + make sure files arent imported twice
+✔ optimize response to be socially approproate
+✔ dedrick always show me his hat fix actions always triggering
 
-make some knowledges optional
-- only need personal, enviroment, world (physical?)
 
+
+# TO ADD::
 error handling
 - file missing
 
 shorten knowledge heading (word embeddings?)
-dedrick always show me his hat fix actions always triggering
 
+make some knowledges optional
+- only need personal, enviroment, world (physical?)
+
+memories?
+
+# FOR GITHUB::
 examples that exhibit
 - actions
 - intense personality (gergs anger)
@@ -23,4 +31,3 @@ https://arxiv.org/pdf/2304.03442.pdf
 
 - release V1
 
-memories
