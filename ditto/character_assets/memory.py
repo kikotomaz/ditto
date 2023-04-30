@@ -37,9 +37,9 @@ class Memory:
         knowledge = (
             f"-- Knowledge about SELF: "
             f"You are {self.name}\n"
-            f"- Internal\n"
+            f"- Personality\n"
             f"{self.personal}\n"
-            f"- External\n"
+            f"- Appearance\n"
             f"{self.physical}\n"
  
         )
