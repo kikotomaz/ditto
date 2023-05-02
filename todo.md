@@ -18,6 +18,9 @@ make some knowledges required
 error handling
 - file missing
 
+finish README
+- make sure everything mentioned in implemented lol
+
 shorten knowledge heading (word embeddings?)
 
 memories?
