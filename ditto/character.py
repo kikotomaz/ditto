@@ -45,7 +45,7 @@ class Character:
                 role = self.name.upper()
 
             convo += f"{role}: {i['content']}\n"
-        
+
         return convo.strip()
 
     def thoughts_prompt(self):
@@ -54,7 +54,7 @@ class Character:
         prompt.write("ABOVE", self.memory.format_knowledge())
         prompt.write("NAME", self.name)
         prompt.write("CHAT", self.flatten_convo())
-        t = self.thoughts    
+        t = self.thoughts
         if(t == ""):
             t = "no previous thoughts."
         prompt.write("THOUGHTS", t)
@@ -63,7 +63,7 @@ class Character:
 
         return prompt
 
-    def response_prompt(self): 
+    def response_prompt(self):
 
         prompt = ai.Prompt("ditto/prompts/provoke_response")
         prompt.write("ABOVE", self.memory.format_knowledge())
@@ -71,11 +71,11 @@ class Character:
         prompt.write("CHAT", self.flatten_convo())
         prompt.write("THOUGHTS", self.thoughts)
         prompt.write("ACTIONS", self.format_actions())
-        
+
         return prompt
 
     def get_actions(self, r):
-        
+
 
         if (not isinstance(r, list)):
             r = r.replace("[","")
@@ -105,7 +105,7 @@ class Character:
 
     # prompt character to choose (from a list of feelings and emotions) how it feels in the given situation
     # def query(self, situation):
-    
+
     # summarize conversation into a knowledge
     # def sleep(self):
 
@@ -160,7 +160,7 @@ def create(character_name, enviroment_name, world_directory, actions = list(), e
 
     world_file = f"{world_directory}/world"
     enviroment_file = f"{world_directory}/enviroments/{enviroment_name}"
-    
+
     character_dir: str = f"{world_directory}/characters/{character_name}"
 
     physical_file = f"{character_dir}/physical"
@@ -209,7 +209,7 @@ def create(character_name, enviroment_name, world_directory, actions = list(), e
 
             if(line.isspace()):
                 continue
-            
+
             knowledge_i += f"{line}\n"
 
         k[i] = knowledge_i
@@ -241,3 +241,5 @@ def get_knowledge(file):
     # for windows
     if(os.path.isfile(f"{file}.txt")):
         return open(f"{file}.txt", "r").read()
+
+    return ""

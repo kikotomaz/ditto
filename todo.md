@@ -1,4 +1,4 @@
-# DONE 
+# DONE
 ✔ properly restrict to knowledge database
 ✔ add tone interpreter and response
 ✔ actions
@@ -17,8 +17,8 @@ error handling
 
 shorten knowledge heading (word embeddings?)
 
-make some knowledges optional
-- only need personal, enviroment, world (physical?)
+make some knowledges required
+- require personal, enviroment, world
 
 memories?
 
@@ -30,4 +30,3 @@ examples that exhibit
 https://arxiv.org/pdf/2304.03442.pdf
 
 - release V1
-
