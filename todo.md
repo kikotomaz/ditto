@@ -12,13 +12,13 @@
 
 
 # TO ADD::
+make some knowledges required
+- require personal, enviroment, world
+
 error handling
 - file missing
 
 shorten knowledge heading (word embeddings?)
-
-make some knowledges required
-- require personal, enviroment, world
 
 memories?
 
